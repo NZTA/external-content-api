@@ -45,12 +45,11 @@ $externalContentEditor->setOptions([
     'theme_advanced_blockformats' => 'p,pre,address,h2,h3,h4,h5,h6',
 ]);
 
+$externalContentEditor->enablePlugins('textcolor', 'link');
+
 // First line:
 $externalContentEditor->removeButtons(
     'spellchecker',
-    'formatselect',
-    'styleselect',
-    'visualaid',
     'pasteword',
     'selectall',
     'cut',
@@ -65,7 +64,12 @@ $externalContentEditor->removeButtons(
     'numlist',
     'blockquote',
     'hr',
-    'charmap'
+    'charmap',
+    'anchor',
+    'table',
+    'formatselect',
+    'unlink',
+    'code'
 );
 $externalContentEditor->addButtonsToLine(
     1,
@@ -75,7 +79,7 @@ $externalContentEditor->addButtonsToLine(
     'image',
     'link',
     'unlink',
-    'anchor',
-    'tablecontrols'
+    'code'
 );
-$externalContentEditor->setButtonsForLine(2, '');
+$externalContentEditor->insertButtonsAfter('underline', 'forecolor','backcolor', 'formatselect');
+$externalContentEditor->addButtonsToLine(2, '');

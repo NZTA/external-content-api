@@ -50,10 +50,25 @@ class ExternalContentArea extends DataObject
      */
     private static $indexes = [
         'IndexName' => [
-            'type'  => 'index',
+            'type' => 'index',
             'columns' => ['Name'],
         ],
     ];
+
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        //update AppName field
+        $pages = $this->Pages();
+        foreach ($pages as $page) {
+            if (!$page->Area()->ApplicationID) {
+                $page->AppName = 'N/A';
+            } else {
+                $page->AppName = $this->Application()->Name;
+                $page->write();
+            }
+        }
+    }
 
     /**
      * @param null $member

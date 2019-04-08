@@ -46,7 +46,7 @@ class ExternalContentApplication extends DataObject
      */
     private static $indexes = [
         'IndexName' => [
-            'type'  => 'index',
+            'type' => 'index',
             'columns' => ['Name'],
         ],
     ];
@@ -58,7 +58,7 @@ class ExternalContentApplication extends DataObject
         //we need to create a group for Permissions check to work correctly
         // check if one is created already
         $readers = $this->findOrMakeExternalContentGroup([
-            'Title'       => 'External content API readers',
+            'Title' => 'External content API readers',
             'Description' => 'Controls view access to external content API',
         ]);
 
@@ -66,7 +66,7 @@ class ExternalContentApplication extends DataObject
             Permission::grant($readers->ID, 'VIEW_EXTERNAL_CONTENT_API');
 
             $editors = $this->findOrMakeExternalContentGroup([
-                'Title'       => 'External content API editors',
+                'Title' => 'External content API editors',
                 'Description' => 'Controls editor access to external content API',
             ]);
 
@@ -76,6 +76,25 @@ class ExternalContentApplication extends DataObject
                 $editors->HtmlEditorConfig = 'external-content-api';
                 $editors->write();
                 $readers->Groups()->add($editors);
+            }
+        }
+    }
+
+    /**
+     * Update ExternalContentPage AppName
+     */
+    public function onAfterWrite()
+    {
+        parent::onAfterWrite();
+        $appName = $this->Name;
+        $areas = $this->Areas();
+        foreach ($areas as $area) {
+            $pages = $area->Pages();
+            foreach ($pages as $page) {
+                if ($page->AppName != $appName) {
+                    $page->AppName = $appName;
+                    $page->write();
+                }
             }
         }
     }

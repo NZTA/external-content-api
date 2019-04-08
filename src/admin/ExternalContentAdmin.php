@@ -10,8 +10,11 @@ use NZTA\ContentApi\Model\ExternalContentArea;
 use NZTA\ContentApi\Model\ExternalContentPage;
 use NZTA\ContentApi\Model\ExternalContentType;
 use SilverStripe\Admin\ModelAdmin;
+use SilverStripe\Forms\GridField\GridFieldExportButton;
 use SilverStripe\Forms\GridField\GridFieldFilterHeader;
+use SilverStripe\Forms\GridField\GridFieldPrintButton;
 use SilverStripe\Security\PermissionProvider;
+
 
 class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
 {
@@ -61,10 +64,10 @@ class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
         $gridFieldName = $this->sanitiseClassName($this->modelClass);
         $gridField = $form->Fields()->fieldByName($gridFieldName);
         $gridField->getConfig()
-            ->addComponent(new GridFieldFilterHeader())
-            ->removeComponentsByType('GridFieldPrintButton')
-            ->removeComponentsByType('GridFieldExportButton');
-        if ($this->modelClass === 'ExternalContent') {
+            ->removeComponentsByType(GridFieldPrintButton::class)
+            ->removeComponentsByType(GridFieldExportButton::class);
+
+        if ($this->modelClass === ExternalContent::class) {
             $exportButton = new ExternalContentExportButton('buttons-before-left');
             $gridField->getConfig()
                 ->addComponent($exportButton);

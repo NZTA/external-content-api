@@ -23,7 +23,7 @@ class ExternalContentType extends DataObject
      * @var array
      */
     private static $db = [
-        'Name'               => 'Varchar',
+        'Name' => 'Varchar',
         'ContentIsPlaintext' => 'Boolean', // 0 is html, 1 is plaintext
     ];
 

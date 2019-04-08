@@ -33,7 +33,7 @@ class ExternalContent extends DataObject
      */
     private static $db = [
         'ExternalID' => 'Varchar',
-        'Content'    => 'HTMLText',
+        'Content' => 'HTMLText',
     ];
 
 
@@ -56,9 +56,15 @@ class ExternalContent extends DataObject
      */
     private static $indexes = [
         'ExternalIDIndex' => [
-            'type'  => 'index',
+            'type' => 'index',
             'columns' => ['ExternalID'],
         ],
+    ];
+
+    private static $searchable_fields = [
+        'ExternalID',
+        'Type.Name' => ['title' => 'Content Type'],
+        'Pages.AppName' => ['title' => 'Application']
     ];
 
     /**
@@ -67,9 +73,9 @@ class ExternalContent extends DataObject
      * @var array
      */
     private static $summary_fields = [
-        'ExternalID'     => 'External ID',
+        'ExternalID' => 'External ID',
         'ContentSummary' => 'Content',
-        'Type.Name'      => 'Content type',
+        'Type.Name' => 'Content type',
     ];
 
     /**

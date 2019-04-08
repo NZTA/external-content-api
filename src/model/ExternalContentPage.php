@@ -29,7 +29,8 @@ class ExternalContentPage extends DataObject
      */
     private static $db = [
         'Name' => 'Varchar',
-        'URL'  => 'Varchar',
+        'URL' => 'Varchar',
+        'AppName' => 'Varchar',
     ];
 
     /**
@@ -51,10 +52,21 @@ class ExternalContentPage extends DataObject
      */
     private static $indexes = [
         'IndexName' => [
-            'type'  => 'index',
+            'type' => 'index',
             'columns' => ['Name'],
         ],
     ];
+
+    public function onBeforeWrite()
+    {
+        parent::onBeforeWrite();
+        //update AppName field, check if ApplicationID = 0
+        if (!$this->Area()->ApplicationID) {
+            $this->AppName = 'N/A';
+        } else {
+            $this->AppName = $this->Area()->Application()->Name;
+        }
+    }
 
     /**
      * @param Member $member
