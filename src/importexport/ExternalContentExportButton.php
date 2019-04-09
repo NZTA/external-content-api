@@ -5,6 +5,8 @@ namespace NZTA\ContentApi\ImportExport;
 use NZTA\ContentApi\Model\ExternalContent;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldExportButton;
+use SilverStripe\Forms\GridField\GridFieldPaginator;
+use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 
 class ExternalContentExportButton extends GridFieldExportButton
 {
@@ -19,7 +21,7 @@ class ExternalContentExportButton extends GridFieldExportButton
         //$listOfContent = ExternalContent::get();
 
         //Remove GridFieldPaginator as we're going to export the entire list.
-        $gridField->getConfig()->removeComponentsByType('GridFieldPaginator');
+        $gridField->getConfig()->removeComponentsByType(GridFieldPaginator::class);
 
         $listOfContent = $gridField->getManipulatedList();
 
