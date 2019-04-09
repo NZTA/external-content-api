@@ -1,19 +1,23 @@
 {
-	"name": "nzta/external-content-api",
-	"description": "Module for managing external content for NZTA API's",
-	"type": "silverstripe-module",
-	"keywords": ["silverstripe", "new zealand", "nzta", "api"],
-	"license": "BSD-3-Clause",
-	"authors": [
-		{
-			"name": "Charm Quarks",
-			"email": "charmquarks@silverstripe.com"
-		}
-	],
+    "name": "nzta/external-content-api",
+    "description": "Module for managing external content for NZTA API's",
+    "type": "silverstripe-vendormodule",
+    "keywords": [
+        "silverstripe",
+        "new zealand",
+        "nzta",
+        "api"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Charm Quarks",
+            "email": "charmquarks@silverstripe.com"
+        }
+    ],
     "require": {
-        "php": ">=5.3.3",
-        "silverstripe/cms": "^3.2",
-        "silverstripe/framework": "^3.2"
+        "silverstripe/cms": "^4.0",
+        "silverstripe/framework": "^4.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true

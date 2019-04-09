@@ -1,5 +1,6 @@
 See [the project documentation](docs/en/index.md)
 
 ## Requirements
-SilverStripe 3.x
+SilverStripe 4.x
+
 
