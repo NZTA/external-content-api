@@ -9,6 +9,9 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
+use SilverStripe\Versioned\Versioned;
+use SilverStripe\VersionedAdmin\Forms\HistoryViewerField;
+use SilverStripe\View\Requirements;
 
 class ExternalContent extends DataObject
 {
@@ -78,6 +81,10 @@ class ExternalContent extends DataObject
         'Type.Name' => 'Content type',
     ];
 
+    private static $extensions = [
+        Versioned::class
+    ];
+
     /**
      * Strip HTML from content summary
      */
@@ -134,12 +141,16 @@ class ExternalContent extends DataObject
     {
         $fields = parent::getCMSFields();
         $contentField = null;
+        Requirements::javascript('nzta/external-content-api: client/dist/js/bundle.js');
+
         if ($this->IsPlaintext()) {
             $contentField = TextareaField::create('Content', 'Content', $this->Content);
             $contentField->setDescription('This editor accepts plain text only due to the Content Type selected');
         } else {
             $contentField = HtmlEditorField::create('Content', 'Content')->setEditorConfig('external-content-api');
         }
+
+        $fields->addFieldToTab('Root.History', HistoryViewerField::create('ExternalContentHistory'));
         $fields->replaceField('Content', $contentField);
 
         return $fields;

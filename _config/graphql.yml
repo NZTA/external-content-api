@@ -1,0 +1,16 @@
+SilverStripe\GraphQL\Manager:
+  schemas:
+    admin:
+      scaffolding:
+        types:
+          NZTA\ContentApi\Model\ExternalContent:
+            fields: [ID, ExternalID, Content]
+            operations:
+              readOne: true
+              rollback: true
+          SilverStripe\Security\Member:
+            fields: [ID, FirstName, Surname]
+            operations:
+              readOne: true
+      typeNames:
+        NZTA\ContentApi\Model\ExternalContent: ExternalContent

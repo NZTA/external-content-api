@@ -1,0 +1,45 @@
+{
+  "name": "nzta-external-content-api",
+  "version": "2.0.0",
+  "description": "Provides API end point for NZTA External Content",
+  "repository": "https://gitlab.cwp.govt.nz/nzta/nzta1.git",
+  "author": "SilverStripe",
+  "scripts": {
+    "build": "yarn && NODE_ENV=production webpack -p --bail --progress",
+    "dev": "yarn && NODE_ENV=development webpack --progress",
+    "watch": "yarn && NODE_ENV=development webpack --watch --progress"
+  },
+  "dependencies": {
+    "react-apollo": "^0.7.1",
+    "graphql-tag": "^0.1.17"
+  },
+  "devDependencies": {
+    "@silverstripe/webpack-config": "^0.4.1",
+    "@silverstripe/eslint-config": "^0.0.2",
+    "webpack": "^2.6.1"
+  },
+  "jest": {
+    "roots": [
+      "client/src"
+    ],
+    "moduleDirectories": [
+      "client/src",
+      "node_modules",
+      "node_modules/@silverstripe/webpack-config/node_modules",
+      "vendor/silverstripe/admin/client/src",
+      "vendor/silverstripe/admin/node_modules"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "engines": {
+    "node": "^6.x"
+  }
+}
