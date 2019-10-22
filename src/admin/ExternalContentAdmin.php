@@ -48,7 +48,7 @@ class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
      * @var array
      */
     private static $model_importers = [
-        'ExternalContent' => ExternalContentImport::class,
+        ExternalContent::class => ExternalContentImport::class,
     ];
 
     /**

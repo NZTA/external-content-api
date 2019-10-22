@@ -7,6 +7,7 @@ use NZTA\ContentApi\Model\ExternalContentApplication;
 use NZTA\ContentApi\Model\ExternalContentArea;
 use NZTA\ContentApi\Model\ExternalContentPage;
 use NZTA\ContentApi\Model\ExternalContentType;
+use SilverStripe\Control\Director;
 use SilverStripe\Core\Convert;
 use SilverStripe\Dev\BulkLoader_Result;
 use SilverStripe\Dev\CsvBulkLoader;
@@ -15,6 +16,19 @@ use SilverStripe\ORM\ValidationException;
 
 class ExternalContentImport extends CsvBulkLoader
 {
+    /**
+     * used to check if record has been deleted
+     * during import
+     * @var bool
+     */
+    protected $deletedRecord = false;
+    /**
+     * stores all processed application name for
+     * import check
+     * @var
+     */
+    protected $previousApplicationName = [];
+
     /**
      * @param array $record
      * @param array $columnMap
@@ -26,10 +40,25 @@ class ExternalContentImport extends CsvBulkLoader
      */
     public function processRecord($record, $columnMap, &$results, $preview = false)
     {
-        //if we have reached this point, assume that the row has been parsed already
+        // if we have reached this point, assume that the row has been parsed already
 
-        //application name
+        // application name
         $applicationName = isset($record['Application']) ? $record['Application'] : null;
+
+        // if replace data was checked we only want to delete records for each application uploaded.
+        // if more than one application was uploaded on csv, reset deletedRecord property
+        if (!in_array($applicationName, $this->previousApplicationName)){
+            $this->deletedRecord = false;
+        }
+
+        if ($this->deleteExistingRecords &&
+            !$this->deletedRecord &&
+            !in_array($applicationName, $this->previousApplicationName)
+        ) {
+            $this->deleteRecordByApplication($applicationName);
+            $this->deletedRecord = true;
+            $this->previousApplicationName[] = $applicationName;
+        }
 
         //area name
         $areaName = isset($record['Area']) ? $record['Area'] : null;
@@ -80,15 +109,16 @@ class ExternalContentImport extends CsvBulkLoader
         //find or make existing content by ContentID. If it's new, set the content and type, then write
         $c = $this->findOrMake(ExternalContent::class, $contentExternalID, 'ExternalID');
         if ($c) {
-            if ($c->ID) {
-                $results->addUpdated($c, 'content record skipped');
-            } else {
+            if (!$c->ID) {
                 $c->Content = $this->deWordify($contentContent);
                 $c->TypeID = $type->ID;
                 $c->write();
+                if ((Director::isLive() || Director::isTest()) && !$c->isPublished()) {
+                    $c->publishSingle();
+                }
+                // we only want to add notification if there's a new content created
                 $results->addCreated($c, 'content record created');
             }
-
             //add the page created above as a relation to this content
             $c->Pages()->add($contentPage);
         }
@@ -190,17 +220,49 @@ class ExternalContentImport extends CsvBulkLoader
         set_time_limit(3600);
         ini_set('memory_limit', '512M');
 
+        return $this->processAll($filepath);
+    }
+
+    /**
+     * This will allow processRecord() to delete records by Application Name
+     * @param $applicationName
+     */
+    private function deleteRecordByApplication($applicationName)
+    {
+        $areaIds = array();
+        $pageIds = array();
+        $contentIds = array();
+        $applicationObj = ExternalContentApplication::get()
+            ->filter(['Name' => $applicationName])
+            ->first();
+        //if application is new, nothing to delete
+        if (!$applicationObj) return;
+        $areas = $applicationObj->Areas();
+        foreach ($areas as $area) {
+            $areaIds[] = $area->ID;
+            $tempPages = $area->Pages();
+            foreach ($tempPages as $tempPage) {
+                $pageIds[] = $tempPage->ID;
+                $tempContents = $tempPage->Contents();
+                foreach ($tempContents as $tempContent) {
+                    $contentIds[] = $tempContent->ID;
+                }
+            }
+        }
         // if replacing data, we need to individually delete objects from the bottom-up
         // this means deleting in a particular order:
         // 1. Content, 2. Page, 3. Area, 4.Application
-        if ($this->deleteExistingRecords) {
-            ExternalContentType::get()->removeAll();
-            ExternalContent::get()->removeAll();
-            ExternalContentPage::get()->removeAll();
-            ExternalContentArea::get()->removeAll();
-            ExternalContentApplication::get()->removeAll();
-        }
-
-        return $this->processAll($filepath);
+        //content
+        ExternalContent::get()->removeMany($contentIds);
+        //page
+        ExternalContentPage::get()->removeMany($pageIds);
+        //area
+        ExternalContentArea::get()->removeMany($areaIds);
+        //application
+        ExternalContentArea::get()->removeByFilter(sprintf(
+            '"Name" = \'%s\'',
+            $applicationName
+        ));
     }
+
 }
