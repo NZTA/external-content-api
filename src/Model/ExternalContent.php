@@ -15,7 +15,6 @@ use SilverStripe\View\Requirements;
 
 class ExternalContent extends DataObject
 {
-
     /**
      * @var string
      */

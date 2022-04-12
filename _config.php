@@ -81,5 +81,5 @@ $externalContentEditor->addButtonsToLine(
     'unlink',
     'code'
 );
-$externalContentEditor->insertButtonsAfter('underline', 'forecolor','backcolor', 'formatselect');
+$externalContentEditor->insertButtonsAfter('underline', 'forecolor', 'backcolor', 'formatselect');
 $externalContentEditor->addButtonsToLine(2, '');

@@ -8,7 +8,6 @@ use SilverStripe\Security\Permission;
 
 class ExternalContentType extends DataObject
 {
-
     /**
      * @var string
      */

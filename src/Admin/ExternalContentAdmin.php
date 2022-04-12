@@ -15,7 +15,6 @@ use SilverStripe\Forms\GridField\GridFieldFilterHeader;
 use SilverStripe\Forms\GridField\GridFieldPrintButton;
 use SilverStripe\Security\PermissionProvider;
 
-
 class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
 {
     /**

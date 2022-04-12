@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="SilverStripe">
+    <description>CodeSniffer ruleset for SilverStripe coding conventions.</description>
+
+    <file>src</file>
+    <file>tests</file>
+
+    <rule ref="PSR12" >
+        <!-- SilverStripe convention for templates can lead to "bad" method name capitalisation e.g. SomeClass.ss $HasThing -> SomeClass::HasThing() -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName" />
+    </rule>
+</ruleset>

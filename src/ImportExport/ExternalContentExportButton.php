@@ -10,7 +10,6 @@ use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 
 class ExternalContentExportButton extends GridFieldExportButton
 {
-
     /**
      * @param GridField $gridField
      *
@@ -25,8 +24,8 @@ class ExternalContentExportButton extends GridFieldExportButton
 
         $listOfContent = $gridField->getManipulatedList();
 
-        foreach($gridField->getConfig()->getComponents() as $component){
-            if($component instanceof GridFieldFilterHeader || $component instanceof GridFieldSortableHeader) {
+        foreach ($gridField->getConfig()->getComponents() as $component) {
+            if ($component instanceof GridFieldFilterHeader || $component instanceof GridFieldSortableHeader) {
                 $listOfContent = $component->getManipulatedData($gridField, $listOfContent);
             }
         }
@@ -73,7 +72,6 @@ class ExternalContentExportButton extends GridFieldExportButton
 
                 //dump CSV row to output buffer
                 fputcsv($csvOut, $row);
-
             }
         }
 

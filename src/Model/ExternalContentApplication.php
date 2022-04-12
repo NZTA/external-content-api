@@ -11,7 +11,6 @@ use SilverStripe\Security\Permission;
 
 class ExternalContentApplication extends DataObject
 {
-
     /**
      * @var string
      */

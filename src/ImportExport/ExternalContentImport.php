@@ -47,11 +47,12 @@ class ExternalContentImport extends CsvBulkLoader
 
         // if replace data was checked we only want to delete records for each application uploaded.
         // if more than one application was uploaded on csv, reset deletedRecord property
-        if (!in_array($applicationName, $this->previousApplicationName)){
+        if (!in_array($applicationName, $this->previousApplicationName)) {
             $this->deletedRecord = false;
         }
 
-        if ($this->deleteExistingRecords &&
+        if (
+            $this->deleteExistingRecords &&
             !$this->deletedRecord &&
             !in_array($applicationName, $this->previousApplicationName)
         ) {
@@ -236,7 +237,9 @@ class ExternalContentImport extends CsvBulkLoader
             ->filter(['Name' => $applicationName])
             ->first();
         //if application is new, nothing to delete
-        if (!$applicationObj) return;
+        if (!$applicationObj) {
+            return;
+        }
         $areas = $applicationObj->Areas();
         foreach ($areas as $area) {
             $areaIds[] = $area->ID;
@@ -264,5 +267,4 @@ class ExternalContentImport extends CsvBulkLoader
             $applicationName
         ));
     }
-
 }
