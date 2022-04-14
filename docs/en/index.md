@@ -27,3 +27,30 @@ E.g. (totally invented scenario)
 **Area**: Licence plate field error message  
 **Type**: Text  
 **Content**: `Please enter a valid NZ Licence plate - up to 6 alpha-numeric characters only`  
+
+```mermaid
+classDiagram
+    class ExternalContent {
+        Varchar ExternalID
+        HTMLText Content
+    }
+    class ExternalContentApplication {
+        Varchar Name
+    }
+    class ExternalContentArea {
+        Varchar Name
+    }
+    class ExternalContentPage {
+        Varchar Name
+        Varchar URL
+        Varchar AppName
+    }
+    class ExternalContentType {
+        Varchar Name
+        Boolean ContentIsPlaintext
+    }
+    ExternalContent "one Type" -- "many Contents" ExternalContentType
+    ExternalContent "many Pages" -- "many Contents" ExternalContentPage
+    ExternalContentApplication "many Areas" -- "one Application" ExternalContentArea
+    ExternalContentArea "many Pages" -- "one Area" ExternalContentPage
+```

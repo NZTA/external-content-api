@@ -8,7 +8,6 @@ use NZTA\ContentApi\Model\ExternalContentArea;
 use NZTA\ContentApi\Model\ExternalContentPage;
 use NZTA\ContentApi\Model\ExternalContentType;
 use SilverStripe\Control\Director;
-use SilverStripe\Core\Convert;
 use SilverStripe\Dev\BulkLoader_Result;
 use SilverStripe\Dev\CsvBulkLoader;
 use SilverStripe\ORM\DataObject;
@@ -77,54 +76,55 @@ class ExternalContentImport extends CsvBulkLoader
 
 
         //find or make an existing application. If it's new, set the name and write it
-        $application = $this->findOrMake(ExternalContentApplication::class, $applicationName);
-        if ($application && !$application->ID) {
+        $application = $this->findOrMake(ExternalContentApplication::class, ['Name' => $applicationName]);
+        if (!$application->exists()) {
             $application->write();
         }
 
         //find or make an existing area. If it's new, set the name and application ID, then write it
-        $area = $this->findOrMake(ExternalContentArea::class, $areaName);
-        if ($area && !$area->ID) {
-            $area->ApplicationID = $application->ID;
+        $area = $this->findOrMake(
+            ExternalContentArea::class,
+            ['Name' => $areaName, 'ApplicationID' => $application->ID]
+        );
+        if (!$area->exists()) {
             $area->write();
         }
 
         //find or make existing page. If it's new, set the name, URL, and area ID, then write it
-        $contentPage = $this->findOrMake(ExternalContentPage::class, $pageName);
-        if ($contentPage && !$contentPage->ID) {
-            $contentPage->URL = Convert::raw2sql($pageUrl);
-            $contentPage->AreaID = $area->ID;
-            $contentPage->write();
+        $page = $this->findOrMake(
+            ExternalContentPage::class,
+            ['Name' => $pageName],
+            ['Area.ApplicationID' => $application->ID]
+        );
+        if (!$page->exists()) {
+            $page->URL = $pageUrl;
+            $page->AreaID = $area->ID;
+            $page->write();
         }
 
         //find or make existing content type. If it's new, determine if it's plaintext or not, then write
-        $type = $this->findOrMake(ExternalContentType::class, $contentType);
-        if ($type && !$type->ID) {
-            $type->ContentIsPlaintext = true;
-            if (preg_match('/rich text$/', strtolower($contentType))) {
-                $type->ContentIsPlaintext = false;
-            }
+        $type = $this->findOrMake(ExternalContentType::class, ['Name' => $contentType]);
+        if (!$type->exists() && $contentType) {
+            $type->ContentIsPlaintext = preg_match('/rich text$/i', $contentType) === 0;
             $type->write();
         }
 
         //find or make existing content by ContentID. If it's new, set the content and type, then write
-        $c = $this->findOrMake(ExternalContent::class, $contentExternalID, 'ExternalID');
-        if ($c) {
-            if (!$c->ID) {
-                $c->Content = $this->deWordify($contentContent);
-                $c->TypeID = $type->ID;
-                $c->write();
-                if ((Director::isLive() || Director::isTest()) && !$c->isPublished()) {
-                    $c->publishSingle();
-                }
-                // we only want to add notification if there's a new content created
-                $results->addCreated($c, 'content record created');
+        $content = $this->findOrMake(ExternalContent::class, ['ExternalID' => $contentExternalID]);
+        if (!$content->exists()) {
+            $content->Content = $this->deWordify($contentContent);
+            $content->TypeID = $type->ID;
+            $content->write();
+            if ((Director::isLive() || Director::isTest()) && !$content->isPublished()) {
+                $content->publishSingle();
             }
-            //add the page created above as a relation to this content
-            $c->Pages()->add($contentPage);
+            // we only want to add notification if there's a new content created
+            $results->addCreated($content, 'content record created');
         }
+        //add the page created above as a relation to this content
+        $content->Pages()->add($page);
 
-        return $c;
+        return $content;
     }
 
     /**
@@ -133,30 +133,28 @@ class ExternalContentImport extends CsvBulkLoader
      * This function will not write to the database, it will just return existing objects,
      * or newly created ones that haven't been written yet.
      *
-     * @param string $dataObject
-     * @param string $name
-     * @param string $key
+     * @param string $dataObjectClass a subclass of DataObject to find
+     * @param array $fields search filters or default values for the desired record
+     * @param array $extraFilters
      *
      * @return DataObject
      */
-    private function findOrMake($dataObject, $name, $key = 'Name')
+    private function findOrMake($dataObjectClass, $fields = [], $extraFilters = [])
     {
-        if (!class_exists($dataObject)) {
+        if (!class_exists($dataObjectClass) || !$fields || !is_array($fields) || !is_array($extraFilters)) {
             return null;
         }
 
-        $do = $dataObject::create();
+        $filters = array_merge($fields, $extraFilters);
 
-        if ($dataObject && $key && $name) {
-            $key = Convert::raw2sql($key);
-            $name = Convert::raw2sql($name);
-            $do = $dataObject::get()->find($key, $name);
-            if (!($do && $do->ID)) {
-                $do = $dataObject::create();
-                $do->$key = $name;
-            }
+        $record = $dataObjectClass::get()->filter($filters)->first();
+
+        if (!$record) {
+            unset($fields['ID']);
+            $record = $dataObjectClass::create($fields);
         }
-        return $do;
+
+        return $record;
     }
 
     /**

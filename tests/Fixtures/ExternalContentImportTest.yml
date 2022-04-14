@@ -1,0 +1,102 @@
+NZTA\ContentApi\Model\ExternalContentType:
+  richtext:
+    Name: Info rich text
+  plaintext:
+    Name: Info plain text
+NZTA\ContentApi\Model\ExternalContentApplication:
+  testapp:
+    Name: TestApp
+NZTA\ContentApi\Model\ExternalContentArea:
+  testarea:
+    Name: TestApp-Area
+    Application: =>NZTA\ContentApi\Model\ExternalContentApplication.testapp
+NZTA\ContentApi\Model\ExternalContentPage:
+  testpage:
+    Name: Index
+    Area: =>NZTA\ContentApi\Model\ExternalContentArea.testarea
+NZTA\ContentApi\Model\ExternalContent:
+  1:
+    ExternalID: TestApp|TestApp-Area|TA-2001
+    Content: Initial Request additional application access
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  2:
+    ExternalID: TestApp|TestApp-Area|TA-2002
+    Content: Initial From here you can request access to different applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  3:
+    ExternalID: TestApp|TestApp-Area|TA-2003
+    Content: Initial Manage access request
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  4:
+    ExternalID: TestApp|TestApp-Area|TA-2004
+    Content: Initial From here you can approve or decline request
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  5:
+    ExternalID: TestApp|TestApp-Area|TA-2005
+    Content: Initial Manage applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  6:
+    ExternalID: TestApp|TestApp-Area|TA-2006
+    Content: Initial From here you can view/add/edit protected applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  7:
+    ExternalID: TestApp|TestApp-Area|TA-2007
+    Content: Initial Manage application approvers
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  8:
+    ExternalID: TestApp|TestApp-Area|TA-2008
+    Content: Initial From here you can view/add application approvers
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  9:
+    ExternalID: TestApp|TestApp-Area|TA-2009
+    Content: Initial Manage organisations
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  10:
+    ExternalID: TestApp|TestApp-Area|TA-2010
+    Content: Initial From here you can view/add/edit organisations
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  11:
+    ExternalID: TestApp|TestApp-Area|TA-2011
+    Content: Initial Manage users
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  12:
+    ExternalID: TestApp|TestApp-Area|TA-2012
+    Content: Initial From here you can invite users for the protected applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  13:
+    ExternalID: TestApp|TestApp-Area|TA-2013
+    Content: Initial Access online applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  14:
+    ExternalID: TestApp|TestApp-Area|TA-2014
+    Content: Initial From here you can go to the applications
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  15:
+    ExternalID: TestApp|TestApp-Area|TA-2015
+    Content: Initial Edit your profile
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  16:
+    ExternalID: TestApp|TestApp-Area|TA-2016
+    Content: Initial From here you can edit your profile
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.richtext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
+  17:
+    ExternalID: TestApp|TestApp-Area|TA-2000
+    Content: Initial Waka Kotahi access portal
+    Type: =>NZTA\ContentApi\Model\ExternalContentType.plaintext
+    Pages: =>NZTA\ContentApi\Model\ExternalContentPage.testpage
