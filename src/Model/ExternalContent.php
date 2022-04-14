@@ -84,6 +84,11 @@ class ExternalContent extends DataObject
         Versioned::class
     ];
 
+    public function getTitle()
+    {
+        return $this->ExternalID;
+    }
+
     /**
      * Strip HTML from content summary
      */
