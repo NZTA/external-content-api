@@ -19,9 +19,6 @@ class ExternalContentAPIController extends Controller
      */
     private static $realm = 'External Content API';
 
-    /**
-     * @var array
-     */
     private static $allowed_actions = [
         'ExternalContent',
     ];
@@ -56,7 +53,7 @@ class ExternalContentAPIController extends Controller
     /**
      * @param HTTPRequest $request
      *
-     * @return DataList of ExternalContent
+     * @return DataList<ExternalContent>
      */
     protected function getData(HTTPRequest $request)
     {
