@@ -4,7 +4,7 @@
 use SilverStripe\Control\Director;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorConfig;
 
-$externalContentEditor = HtmlEditorConfig::get('external-content-api');
+$externalContentEditor = HTMLEditorConfig::get('external-content-api');
 
 // Start with the same configuration as 'cms' config (defined in framework/admin/_config.php).
 $externalContentEditor->setOptions([

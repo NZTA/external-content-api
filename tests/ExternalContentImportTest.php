@@ -1,6 +1,6 @@
 <?php
 
-namespace NZTA\ExternalContentApi\Tests;
+namespace NZTA\ContentApi\Tests;
 
 use NZTA\ContentApi\ImportExport\ExternalContentImport;
 use NZTA\ContentApi\Model\ExternalContent;
@@ -27,7 +27,7 @@ class ExternalContentImportTest extends SapphireTest
         $this->assertCount(1, ExternalContentPage::get(), 'Only the Index page should be defined');
         $this->assertCount(2, ExternalContentType::get(), 'There are rich text and plain text Types only');
 
-        $this->assertContains('Initial', $this->objFromFixture(ExternalContent::class, '1')->Content);
+        $this->assertStringContainsString('Initial', $this->objFromFixture(ExternalContent::class, '1')->Content);
 
         $importer = new ExternalContentImport(ExternalContent::class);
         $importer->load(self::IMPORT_FIXTURE);
@@ -44,7 +44,7 @@ class ExternalContentImportTest extends SapphireTest
         $this->assertCount(2, ExternalContentType::get(), 'Types are not created for rows missing a type entry');
         $this->assertCount(0, ExternalContentType::get()->filter('Name', [null, '']), 'Empty types do not exist');
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             'Initial',
             ExternalContent::get()->find('ExternalID', self::CHECK_UPDATED_EXTERNALID)->Content,
             'The import should not update existing records'
@@ -64,7 +64,7 @@ class ExternalContentImportTest extends SapphireTest
             $updatedContent->ID,
             'After deletion and recreation the same ExternalID should have a new ID for the DataObject'
         );
-        $this->assertNotContains(
+        $this->assertStringNotContainsString(
             'Initial',
             $updatedContent->Content,
             'The import should update existing records via deleting them first'
