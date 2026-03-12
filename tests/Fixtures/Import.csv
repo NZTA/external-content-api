@@ -1,0 +1,52 @@
+Mock-up screen,Mockup field/conditions,Application,Area,PageName,PageUrl,ContentID,Content,Type
+Test App,Landing page menu Request additional application access title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2001,Request additional application access,Info Plain Text
+Test App,CMS Text for menu Request additional application access,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2002,From here you can request access to different applications,Info Rich Text
+Test App,Landing page menu Manage access request title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2003,Manage access request,Info Plain Text
+Test App,CMS Text for menu Manage access request,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2004,From here you can approve or decline request,Info Rich Text
+Test App,Landing page menu Manage applications title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2005,Manage applications,Info Plain Text
+Test App,CMS Text for menu Manage applications,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2006,From here you can view/add/edit protected applications,Info Rich Text
+Test App,Landing page menu Manage application approvers title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2007,Manage application approvers,Info Plain Text
+Test App,CMS Text for menu Manage application approvers,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2008,From here you can view/add application approvers,Info Rich Text
+Test App,Landing page menu Manage organisations title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2009,Manage organisations,Info Plain Text
+Test App,CMS Text for menu Manage organisations,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2010,From here you can view/add/edit organisations,Info Rich Text
+Test App,Landing page menu Manage users title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2011,Manage users,Info Plain Text
+Test App,CMS Text for menu Manage users,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2012,From here you can invite users for the protected applications,Info Rich Text
+Test App,Landing page menu Access online applications title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2013,Access online applications,Info Plain Text
+Test App,CMS Text for menu Access online applications,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2014,From here you can go to the applications,Info Rich Text
+Test App,Landing page menu Edit your profile title,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2015,Edit your profile,Info Plain Text
+Test App,CMS Text for menu Edit your profile,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2016,From here you can edit your profile,Info Rich Text
+Test App,Authorized landing menu page,TestApp,TestApp-Area,Index,,TestApp|TestApp-Area|TA-2000,Waka Kotahi access portal,Info Plain Text
+Test App,Landing page menu Request additional application access title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3001,Request additional application access,Info Plain Text
+Test App,CMS Text for menu Request additional application access,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3002,From here you can request access to different applications,Info Rich Text
+Test App,Landing page menu Manage access request title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3003,Manage access request,Info Plain Text
+Test App,CMS Text for menu Manage access request,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3004,From here you can approve or decline request,Info Rich Text
+Test App,Landing page menu Manage applications title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3005,Manage applications,
+Test App,CMS Text for menu Manage applications,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3006,From here you can view/add/edit protected applications,Info Rich Text
+Test App,Landing page menu Manage application approvers title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3007,Manage application approvers,Info Plain Text
+Test App,CMS Text for menu Manage application approvers,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3008,From here you can view/add application approvers,Info Rich Text
+Test App,Landing page menu Manage organisations title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3009,Manage organisations,
+Test App,CMS Text for menu Manage organisations,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3010,From here you can view/add/edit organisations,Info Rich Text
+Test App,Landing page menu Manage users title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3011,Manage users,
+Test App,CMS Text for menu Manage users,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3012,From here you can invite users for the protected applications,Info Rich Text
+Test App,Landing page menu Access online applications title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3013,Access online applications,Info Plain Text
+Test App,CMS Text for menu Access online applications,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3014,From here you can go to the applications,Info Rich Text
+Test App,Landing page menu Edit your profile title,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3015,Edit your profile,Info Plain Text
+Test App,CMS Text for menu Edit your profile,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3016,From here you can edit your profile,Info Rich Text
+Test App,Authorized landing menu page,TestApp,TestApp-Area,NotIndex,,TestApp|TestApp-Area|TA-3000,Waka Kotahi access portal,Info Plain Text
+Test App,Landing page menu Request additional application access title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1001,Request additional application access,Info Plain Text
+Test App,CMS Text for menu Request additional application access,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1002,From here you can request access to different applications,Info Rich Text
+Test App,Landing page menu Manage access request title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1003,Manage access request,Info Plain Text
+Test App,CMS Text for menu Manage access request,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1004,From here you can approve or decline request,Info Rich Text
+Test App,Landing page menu Manage applications title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1005,Manage applications,Info Plain Text
+Test App,CMS Text for menu Manage applications,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1006,From here you can view/add/edit protected applications,Info Rich Text
+Test App,Landing page menu Manage application approvers title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1007,Manage application approvers,Info Plain Text
+Test App,CMS Text for menu Manage application approvers,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1008,From here you can view/add application approvers,Info Rich Text
+Test App,Landing page menu Manage organisations title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1009,Manage organisations,Info Plain Text
+Test App,CMS Text for menu Manage organisations,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1010,From here you can view/add/edit organisations,Info Rich Text
+Test App,Landing page menu Manage users title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1011,Manage users,Info Plain Text
+Test App,CMS Text for menu Manage users,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1012,From here you can invite users for the protected applications,Info Rich Text
+Test App,Landing page menu Access online applications title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1013,Access online applications,Info Plain Text
+Test App,CMS Text for menu Access online applications,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1014,From here you can go to the applications,Info Rich Text
+Test App,Landing page menu Edit your profile title,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1015,Edit your profile,Info Plain Text
+Test App,CMS Text for menu Edit your profile,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1016,From here you can edit your profile,Info Rich Text
+Test App,Authorized landing menu page,FakeApp,FakeApp-Area,Index,,FakeApp|FakeApp-Area|FA-1000,Waka Kotahi access portal,Info Plain Text
