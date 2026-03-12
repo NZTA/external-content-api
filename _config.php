@@ -2,9 +2,9 @@
 
 // TinyMCE configuration
 use SilverStripe\Control\Director;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorConfig;
+use SilverStripe\TinyMCE\TinyMCEConfig;
 
-$externalContentEditor = HtmlEditorConfig::get('external-content-api');
+$externalContentEditor = TinyMCEConfig::get('external-content-api');
 
 // Start with the same configuration as 'cms' config (defined in framework/admin/_config.php).
 $externalContentEditor->setOptions([
