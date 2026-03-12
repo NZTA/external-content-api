@@ -54,8 +54,7 @@ class ExternalContentExportButton extends GridFieldExportButton
 
         //data rows
         foreach ($listOfContent as $content) {
-            $contentPages = $content->Pages();
-            foreach ($contentPages as $page) {
+            foreach ($content->Pages() as $page) {
                 $row['Application'] = $page->Area() && $page->Area()->Application()
                     ? $page->Area()->Application()->Name
                     : '';
@@ -64,10 +63,7 @@ class ExternalContentExportButton extends GridFieldExportButton
                 $row['PageName'] = $page->Name;
                 $row['PageUrl'] = $page->URL;
                 $row['ContentID'] = $content->ExternalID;
-
-                $bodyContent = str_replace(["\r", "\n"], "\n", $content->Content);
-                $row['Body'] = $bodyContent;
-
+                $row['Body'] = str_replace(["\r", "\n"], "\n", $content->Content ?? '');
                 $row['Type'] = $content->Type() ? $content->Type()->Name : '';
 
                 //dump CSV row to output buffer

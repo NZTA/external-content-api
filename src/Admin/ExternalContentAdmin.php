@@ -17,9 +17,6 @@ use SilverStripe\Security\PermissionProvider;
 
 class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
 {
-    /**
-     * @var array
-     */
     private static $managed_models = [
         ExternalContent::class,
         ExternalContentApplication::class,
@@ -28,34 +25,14 @@ class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
         ExternalContentType::class,
     ];
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ExternalContentAdmin';
-
-    /**
-     * @var string
-     */
     private static $url_segment = 'external-content';
 
-    /**
-     * @var string
-     */
     private static $menu_title = 'External Content';
 
-    /**
-     * @var array
-     */
     private static $model_importers = [
         ExternalContent::class => ExternalContentImport::class,
     ];
 
-    /**
-     * @param integer $id
-     * @param array $fields
-     *
-     * @return \SilverStripe\Forms\Form
-     */
     public function getEditForm($id = null, $fields = null)
     {
         // add ability to search
@@ -76,6 +53,7 @@ class ExternalContentAdmin extends ModelAdmin implements PermissionProvider
     }
 
     /**
+     * @inheritDoc
      * @return array
      */
     public function providePermissions()
